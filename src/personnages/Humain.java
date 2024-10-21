@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Humain {
 	private String nom;
 	private String boissonFav;
-	private int argent;
+	protected int argent;
 	
 	public Humain(String nom, String boissonFav, int argent) {
 		this.nom = nom;
@@ -20,7 +20,7 @@ public class Humain {
 		return argent;
 	}
 	
-	public void parler(String texte) {
+	protected void parler(String texte) {
 		System.out.println("(" + this.nom + ") - " + texte);
 	}
 	
