@@ -1,6 +1,7 @@
 package personnages;
 
 public class Ronin extends Humain {
+	
 	private int honneur = 1;
 	
 	public Ronin(String nom, String boissonFav, int argent) {
@@ -8,10 +9,10 @@ public class Ronin extends Humain {
 	}
 	
 	public void donner(Commercant beneficiaire) {
-		int don = (this.argent)/10;
+		int don = (this.getArgent())/10;
 		parler(beneficiaire.getNom() + " prend ces " + don + " sous.");
 		beneficiaire.recevoir(don);
-		this.argent *= 0.9;
+		this.perdreArgent((this.getArgent())/10);
 	}
 	
 	public void provoquer(Yakuza adversaire) {
@@ -19,16 +20,16 @@ public class Ronin extends Humain {
 		int force = (this.honneur) * 2;
 		if(force >= adversaire.getReputation()) {
 			adversaire.parler("J'ai perdu mon duel et mes " + adversaire.getArgent() + " sous, snif... J'ai déshonoré le clan de " + adversaire.getClan() + ".");
-			this.argent += adversaire.getArgent();
+			this.gagnerArgent(adversaire.getArgent());
 			adversaire.perdre(adversaire.getArgent());
 			this.honneur += 1;
 			parler("Je t'ai eu petit yakusa!");
 		} else {
 			parler("J'ai perdu contre ce yakuza, mon honneur et ma bourse ont en pris un coup.");
-			adversaire.parler("Ce ronin pensait vraiment battre " + adversaire.getNom() + " du clan de " + adversaire.getClan() + " ? Je l'ai dépouillé de ses " + this.argent + " sous.");
+			adversaire.parler("Ce ronin pensait vraiment battre " + adversaire.getNom() + " du clan de " + adversaire.getClan() + " ? Je l'ai dépouillé de ses " + this.getArgent() + " sous.");
 			this.honneur -= 1;
-			adversaire.gagner(this.argent);
-			this.argent = 0;
+			adversaire.gagner(this.getArgent());
+			this.perdreArgent(this.getArgent());
 		}
 	}
 }

@@ -3,11 +3,12 @@ package personnages;
 import java.util.Objects;
 
 public class Humain {
+	
 	private String nom;
 	private String boissonFav;
-	protected int argent;
-	private int nbConnaissance = 0;
-	private Humain[] memoire = new Humain[30];
+	private int argent;
+	protected int nbConnaissance = 0;
+	protected Humain[] memoire = new Humain[30];
 	
 	public Humain(String nom, String boissonFav, int argent) {
 		this.nom = nom;
@@ -34,11 +35,11 @@ public class Humain {
 		parler("Mmmm, un bon verre de " + this.boissonFav + " ! GLOUPS !");
 	}
 	
-	private void gagnerArgent(int gain) {
+	protected void gagnerArgent(int gain) {
 		this.argent += gain;
 	}
 	
-	private void perdreArgent(int perte) {
+	protected void perdreArgent(int perte) {
 		this.argent -= perte;
 	}
 	
@@ -54,7 +55,7 @@ public class Humain {
 		}
 	}
 	
-	public void memoriser(Humain autreHumain) {
+	private void memoriser(Humain autreHumain) {
 		if(this.nbConnaissance < 30) {
 			this.memoire[this.nbConnaissance] = autreHumain;
 			this.nbConnaissance++;
@@ -66,7 +67,7 @@ public class Humain {
 		}
 	}
 	
-	public void repondre(Humain autreHumain) {
+	private void repondre(Humain autreHumain) {
 		direBonjour();
 		memoriser(autreHumain);
 	}
