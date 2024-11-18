@@ -33,4 +33,10 @@ public class Yakuza extends Humain {
 	public void perdre(int perte) {
 		this.argent -= perte;
 	}
+	
+	@Override
+	public void direBonjour() {
+		super.direBonjour();
+		parler("Mon clan est celui  de " + this.clan);
+	}
 }
